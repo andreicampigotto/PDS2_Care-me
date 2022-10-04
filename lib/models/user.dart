@@ -1,4 +1,6 @@
-class User {
+import 'package:flutter/material.dart';
+
+class User with ChangeNotifier {
   final String userId;
   final String image;
   final String icon;
@@ -18,4 +20,5 @@ class User {
     required this.bloodType,
     required this.height,
   });
+  notifyListeners();
 }

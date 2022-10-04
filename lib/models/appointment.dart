@@ -1,9 +1,14 @@
-import './doctor.dart';
+import 'package:care/models/disease.dart';
+
+import 'allergy.dart';
+import 'doctor.dart';
+import 'drug.dart';
 
 class Appointment {
   final String appointmentId;
-  final String appointment;
-  final double weightallergyId;
+  final List<Disease> diseases;
+  final List<Allergy> allergies;
+  final List<Drug> drugs;
   final String bloodPressure;
   final String comments;
   final Doctor doctor;
@@ -11,11 +16,12 @@ class Appointment {
 
   Appointment({
     required this.appointmentId,
-    required this.appointment,
-    required this.weightallergyId,
+    required this.allergies,
     required this.bloodPressure,
     required this.comments,
     required this.doctor,
     required this.appointmentDate,
+    required this.drugs,
+    required this.diseases,
   });
 }
