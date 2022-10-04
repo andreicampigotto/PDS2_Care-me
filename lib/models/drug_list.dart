@@ -12,7 +12,7 @@ class DrugList with ChangeNotifier {
     return _drugs.length;
   }
 
-  void addDisease(Drug drug) {
+  void addDrug(Drug drug) {
     drugs.insert(
       0,
       Drug(
@@ -25,5 +25,5 @@ class DrugList with ChangeNotifier {
     notifyListeners();
   }
 
-  void loadDisease() {}
+  void loadDrug() {}
 }

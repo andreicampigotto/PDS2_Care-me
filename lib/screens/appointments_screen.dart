@@ -5,6 +5,38 @@ class AppointmentsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Consultas'),
+      ),
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(4),
+            margin: const EdgeInsets.only(top: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text('data'),
+                Text('Pressao'),
+              ],
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.all(4),
+            margin: const EdgeInsets.only(top: 8, bottom: 8),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text('peso'),
+                Text('altura'),
+                Text('imc'),
+              ],
+            ),
+          ),
+          Divider(),
+        ],
+      ),
+    );
   }
 }

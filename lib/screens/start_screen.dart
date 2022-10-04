@@ -1,4 +1,6 @@
 import 'package:care/models/user.dart';
+import 'package:care/screens/appointments_screen.dart';
+import 'package:care/utils/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -60,7 +62,8 @@ class StartScreen extends StatelessWidget {
           SizedBox(
             width: 175.0,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(AppRoutes.APPOINTMENTS),
               child: Text('Histórico de consultas'),
             ),
           ),
@@ -74,7 +77,7 @@ class StartScreen extends StatelessWidget {
           SizedBox(
             width: 175.0,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () => AppointmentsScreen(),
               child: Text('Doenças'),
             ),
           ),

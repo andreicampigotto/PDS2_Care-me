@@ -1,3 +1,4 @@
+import 'package:care/screens/appointments_screen.dart';
 import 'package:care/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -52,6 +53,7 @@ class _MyAppState extends State<Care> {
       ),
       routes: {
         AppRoutes.START: (ctx) => StartScreen(),
+        AppRoutes.APPOINTMENTS: (ctx) => AppointmentsScreen(),
       },
     );
   }
