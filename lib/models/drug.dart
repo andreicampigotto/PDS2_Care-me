@@ -2,7 +2,7 @@ class Drug {
   final String drugId;
   final String name;
   final String description;
-  final bool continuous = false;
+  final bool continuos;
   final DateTime date;
 
   Drug({
@@ -10,5 +10,6 @@ class Drug {
     required this.name,
     required this.description,
     required this.date,
+    required this.continuos,
   });
 }

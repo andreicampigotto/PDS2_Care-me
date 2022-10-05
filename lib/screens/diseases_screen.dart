@@ -14,7 +14,9 @@ class _DiseasesScreenState extends State<DiseasesScreen> {
     super.initState();
   }
 
-  _addTransaction(String name, String description, DateTime date) {
+  _addTransaction(
+      String name, String description, DateTime date, bool continuos) {
+    continuos = false;
     final newTransaction = Disease(
       diseaseId: 'XX01',
       name: name,

@@ -1,10 +1,12 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 import '../components/adaptative_button.dart';
 import '../components/adaptative_text_field.dart';
 
 class DefaultForm extends StatefulWidget {
-  final void Function(String, String, DateTime) onSubmit;
+  final void Function(String, String, DateTime, bool) onSubmit;
 
   const DefaultForm(this.onSubmit, {super.key});
 
@@ -15,17 +17,19 @@ class DefaultForm extends StatefulWidget {
 class _DefaultFormState extends State<DefaultForm> {
   final _name = TextEditingController();
   final _description = TextEditingController();
+  bool _continuos = false;
   DateTime _actualDate = DateTime.now();
 
   _submitForm() {
     final name = _name.text;
     final description = _description.text;
+    final continuos = _continuos;
 
     if (name.isEmpty || description.isEmpty) {
       return;
     }
 
-    widget.onSubmit(name, description, _actualDate);
+    widget.onSubmit(name, description, _actualDate, continuos);
   }
 
   @override

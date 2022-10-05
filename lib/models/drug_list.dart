@@ -20,6 +20,7 @@ class DrugList with ChangeNotifier {
         name: drug.name,
         description: drug.description,
         date: DateTime.now(),
+        continuos: drug.continuos,
       ),
     );
 

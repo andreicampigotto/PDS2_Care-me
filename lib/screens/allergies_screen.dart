@@ -16,7 +16,9 @@ class _AllergiesScreenState extends State<AllergiesScreen> {
     super.initState();
   }
 
-  _addTransaction(String name, String description, DateTime date) {
+  _addTransaction(
+      String name, String description, DateTime date, bool continuos) {
+    continuos = false;
     final newTransaction = Allergy(
       allergyId: 'XX01',
       name: name,
