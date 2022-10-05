@@ -1,8 +1,4 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-
-import '../components/adaptative_button.dart';
 import '../components/adaptative_text_field.dart';
 
 class DefaultForm extends StatefulWidget {
@@ -57,17 +53,24 @@ class _DefaultFormState extends State<DefaultForm> {
                 label: 'Nome',
               ),
               AdaptativeTextField(
+                maxLines: 3,
                 controller: _description,
                 label: 'Descrição',
                 onSubmitted: (_) => _submitForm(),
               ),
+              const SizedBox(
+                height: 8,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  AdaptativeButton(
-                    label: 'Adicionar Transação',
-                    onPressed: _submitForm,
-                  )
+                  SizedBox(
+                    width: 175.0,
+                    child: ElevatedButton(
+                      child: const Text('Salvar'),
+                      onPressed: _submitForm,
+                    ),
+                  ),
                 ],
               )
             ],

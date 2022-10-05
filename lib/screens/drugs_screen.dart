@@ -15,12 +15,14 @@ class _DrugsScreenState extends State<DrugsScreen> {
     super.initState();
   }
 
-  _addTransaction(String name, String description, DateTime date) {
+  _addTransaction(
+      String name, String description, DateTime date, bool continuos) {
     final newTransaction = Drug(
       drugId: 'XX01',
       name: name,
       description: description,
       date: date,
+      continuos: continuos,
     );
   }
 

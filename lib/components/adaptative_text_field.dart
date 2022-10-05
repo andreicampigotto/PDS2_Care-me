@@ -7,12 +7,14 @@ class AdaptativeTextField extends StatelessWidget {
   final String? label;
   final Function(String)? onSubmitted;
   final TextInputType? keyboardType;
+  final int? maxLines;
 
   const AdaptativeTextField({
     super.key,
     this.controller,
     this.label,
     this.onSubmitted,
+    this.maxLines,
     this.keyboardType = TextInputType.text,
   });
 
@@ -36,6 +38,7 @@ class AdaptativeTextField extends StatelessWidget {
             controller: controller,
             onSubmitted: onSubmitted,
             decoration: InputDecoration(labelText: label),
+            maxLines: maxLines,
           );
   }
 }
