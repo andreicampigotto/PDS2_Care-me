@@ -86,7 +86,8 @@ class NewAppointmentScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          Navigator.of(context).pushNamed(AppRoutes.DRUGS),
                       child: Text('Medicação'),
                     ),
                     TextButton(
@@ -95,7 +96,8 @@ class NewAppointmentScreen extends StatelessWidget {
                       child: Text('Doença'),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          Navigator.of(context).pushNamed(AppRoutes.ALLERGIES),
                       child: Text('Alergia'),
                     ),
                   ],

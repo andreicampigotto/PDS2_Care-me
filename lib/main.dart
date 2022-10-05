@@ -3,6 +3,8 @@ import 'package:care/screens/diseases_screen.dart';
 import 'package:care/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'screens/allergies_screen.dart';
+import 'screens/drugs_screen.dart';
 import 'screens/new_appointment_screen.dart';
 import 'utils/app_routes.dart';
 
@@ -61,6 +63,8 @@ class _MyAppState extends State<Care> {
         AppRoutes.APPOINTMENTS: (ctx) => AppointmentsScreen(),
         AppRoutes.NEW_APPOINTMENTS: (ctx) => NewAppointmentScreen(),
         AppRoutes.DISEASES: (ctx) => DiseasesScreen(),
+        AppRoutes.ALLERGIES: (ctx) => AllergiesScreen(),
+        AppRoutes.DRUGS: (ctx) => DrugsScreen(),
       },
     );
   }

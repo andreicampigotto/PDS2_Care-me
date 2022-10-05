@@ -16,9 +16,10 @@ class DrugList with ChangeNotifier {
     drugs.insert(
       0,
       Drug(
-        drugId: 'teste',
+        drugId: 'xx01',
         name: drug.name,
         description: drug.description,
+        date: DateTime.now(),
       ),
     );
 
