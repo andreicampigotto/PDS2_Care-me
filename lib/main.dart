@@ -2,6 +2,7 @@ import 'package:care/screens/appointments_screen.dart';
 import 'package:care/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'screens/new_appointment_screen.dart';
 import 'utils/app_routes.dart';
 
 void main() => runApp(Care());
@@ -17,6 +18,7 @@ class _MyAppState extends State<Care> {
     return MaterialApp(
       title: 'Care',
       theme: ThemeData(
+        //primarySwatch: ,
         canvasColor: const Color.fromRGBO(
           207,
           232,
@@ -54,6 +56,7 @@ class _MyAppState extends State<Care> {
       routes: {
         AppRoutes.START: (ctx) => StartScreen(),
         AppRoutes.APPOINTMENTS: (ctx) => AppointmentsScreen(),
+        AppRoutes.NEW_APPOINTMENTS: (ctx) => NewAppointmentScreen(),
       },
     );
   }

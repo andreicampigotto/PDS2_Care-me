@@ -21,16 +21,26 @@ class StartScreen extends StatelessWidget {
               children: [
                 Container(
                     margin: const EdgeInsets.only(top: 8),
-                    child: const Text('Ola pessoa')),
-                Container(
-                  margin: const EdgeInsets.only(top: 8),
-                  child: Stack(
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(70),
-                        child: (Text('Image')),
-                      )
-                    ],
+                    child: const Text(
+                      'Ola pessoa',
+                    )),
+                CircleAvatar(
+                  backgroundColor: Color.fromRGBO(
+                    114,
+                    155,
+                    114,
+                    1,
+                  ),
+                  foregroundColor: Color.fromRGBO(
+                    114,
+                    155,
+                    114,
+                    1,
+                  ),
+                  maxRadius: 85,
+                  minRadius: 75,
+                  backgroundImage: NetworkImage(
+                    'https://www.thoughtco.com/thmb/51xXQ9UAXIVrPVWHdvBfsyASDz4=/768x0/filters:no_upscale():max_bytes(150000):strip_icc()/GilligansEthicsofCare-5148d189f3fa4143a098184dc8a92b8d.jpg',
                   ),
                 ),
                 Container(
@@ -38,14 +48,20 @@ class StartScreen extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text('Tipo sanguineo'),
-                      Text('idade'),
+                      Text(
+                        'Tipo sanguineo',
+                      ),
+                      Text(
+                        'idade',
+                      ),
                     ],
                   ),
                 ),
                 Container(
                     margin: const EdgeInsets.only(top: 8),
-                    child: Text('Tel.: Emergenci')),
+                    child: Text(
+                      'Tel.: Emergencia',
+                    )),
               ],
             ),
           ),
@@ -55,7 +71,8 @@ class StartScreen extends StatelessWidget {
           SizedBox(
             width: 175.0,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(AppRoutes.NEW_APPOINTMENTS),
               child: Text('Nova consulta'),
             ),
           ),
@@ -64,7 +81,9 @@ class StartScreen extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () =>
                   Navigator.of(context).pushNamed(AppRoutes.APPOINTMENTS),
-              child: Text('Histórico de consultas'),
+              child: Text(
+                'Histórico de consultas',
+              ),
             ),
           ),
           SizedBox(

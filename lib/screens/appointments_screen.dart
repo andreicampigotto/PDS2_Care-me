@@ -1,3 +1,4 @@
+import 'package:care/widgets/appointments_widget.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentsScreen extends StatelessWidget {
@@ -35,6 +36,11 @@ class AppointmentsScreen extends StatelessWidget {
             ),
           ),
           Divider(),
+          ListView(
+            children: [
+              AppointmentWidget(),
+            ],
+          )
         ],
       ),
     );
