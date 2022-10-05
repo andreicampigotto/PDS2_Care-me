@@ -20,10 +20,17 @@ class StartScreen extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                    margin: const EdgeInsets.only(top: 8),
-                    child: const Text(
-                      'Ola pessoa',
-                    )),
+                  margin: const EdgeInsets.only(top: 8),
+                  child: const Text(
+                    'Ola pessoa',
+                    style: TextStyle(
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
                 CircleAvatar(
                   backgroundColor: Color.fromRGBO(
                     114,
@@ -43,25 +50,41 @@ class StartScreen extends StatelessWidget {
                     'https://www.thoughtco.com/thmb/51xXQ9UAXIVrPVWHdvBfsyASDz4=/768x0/filters:no_upscale():max_bytes(150000):strip_icc()/GilligansEthicsofCare-5148d189f3fa4143a098184dc8a92b8d.jpg',
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.only(top: 8),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        'Tipo sanguineo',
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      'Tipo sanguineo',
+                      style: TextStyle(
+                        fontSize: 16,
                       ),
-                      Text(
-                        'idade',
+                    ),
+                    Text(
+                      'idade',
+                      style: TextStyle(
+                        fontSize: 16,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
                 ),
                 Container(
-                    margin: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      'Tel.: Emergencia',
-                    )),
+                  margin: const EdgeInsets.only(top: 8),
+                  child: Text(
+                    'Tel.: Emergencia',
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
               ],
             ),
           ),

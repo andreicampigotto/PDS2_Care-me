@@ -46,6 +46,16 @@ class _MyAppState extends State<Care> {
             ),
           ),
         ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            primary: Color.fromRGBO(
+              114,
+              155,
+              114,
+              1,
+            ),
+          ),
+        ),
         textTheme: ThemeData.light().textTheme.copyWith(
               titleMedium: const TextStyle(
                 fontSize: 20,

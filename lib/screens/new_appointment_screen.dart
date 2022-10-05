@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class NewAppointmentScreen extends StatelessWidget {
@@ -19,8 +21,14 @@ class NewAppointmentScreen extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                    margin: EdgeInsets.only(top: 8),
-                    child: Text('Como foi sua consulta?')),
+                  margin: EdgeInsets.only(top: 8),
+                  child: Text(
+                    'Como foi sua consulta?',
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
                 Padding(
                   padding: EdgeInsets.all(16),
                   child: TextFormField(
@@ -70,8 +78,29 @@ class NewAppointmentScreen extends StatelessWidget {
                   ),
                 ),
                 Row(
-                  children: [],
-                )
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: Text('Medicação'),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text('Alergia'),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text('Doença'),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 175.0,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Text('Salvar'),
+                  ),
+                ),
               ],
             ),
           ),
