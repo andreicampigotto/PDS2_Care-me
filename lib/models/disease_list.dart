@@ -20,6 +20,7 @@ class DiseaseList with ChangeNotifier {
         diseaseId: 'teste',
         name: disease.name,
         description: disease.description,
+        date: DateTime.now(),
       ),
     );
 

@@ -2,6 +2,8 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
+import '../utils/app_routes.dart';
+
 class NewAppointmentScreen extends StatelessWidget {
   const NewAppointmentScreen({super.key});
 
@@ -12,9 +14,12 @@ class NewAppointmentScreen extends StatelessWidget {
         title: Text('Nova consulta'),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          const SizedBox(
+            height: 32,
+          ),
           Card(
             margin: EdgeInsets.only(left: 16, right: 16),
             elevation: 8,
@@ -85,12 +90,13 @@ class NewAppointmentScreen extends StatelessWidget {
                       child: Text('Medicação'),
                     ),
                     TextButton(
-                      onPressed: () {},
-                      child: Text('Alergia'),
+                      onPressed: () =>
+                          Navigator.of(context).pushNamed(AppRoutes.DISEASES),
+                      child: Text('Doença'),
                     ),
                     TextButton(
                       onPressed: () {},
-                      child: Text('Doença'),
+                      child: Text('Alergia'),
                     ),
                   ],
                 ),
@@ -100,6 +106,9 @@ class NewAppointmentScreen extends StatelessWidget {
                     onPressed: () {},
                     child: const Text('Salvar'),
                   ),
+                ),
+                const SizedBox(
+                  height: 8,
                 ),
               ],
             ),
