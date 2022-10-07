@@ -1,4 +1,5 @@
 import 'package:care/models/disease.dart';
+import 'package:care/widgets/default_cards.dart';
 import 'package:care/widgets/default_form.dart';
 import 'package:flutter/material.dart';
 
@@ -39,6 +40,12 @@ class _DiseasesScreenState extends State<DiseasesScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Doenças'),
+      ),
+      body: ListView(
+        children: [
+          SizedBox(height: 8),
+          DefaultCards(),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 8,

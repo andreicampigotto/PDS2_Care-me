@@ -15,7 +15,7 @@ class StartScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Card(
-            margin: EdgeInsets.only(right: 24, left: 24),
+            margin: const EdgeInsets.only(right: 32, left: 32),
             elevation: 8,
             child: Column(
               children: [
@@ -25,6 +25,7 @@ class StartScreen extends StatelessWidget {
                     'Ola pessoa',
                     style: TextStyle(
                       fontSize: 24,
+                      color: Colors.black87,
                     ),
                   ),
                 ),
@@ -60,11 +61,13 @@ class StartScreen extends StatelessWidget {
                       'Tipo sanguineo',
                       style: TextStyle(
                         fontSize: 16,
+                        color: Colors.black54,
                       ),
                     ),
                     Text(
                       'idade',
                       style: TextStyle(
+                        color: Colors.black54,
                         fontSize: 16,
                       ),
                     ),
@@ -78,6 +81,7 @@ class StartScreen extends StatelessWidget {
                   child: Text(
                     'Tel.: Emergencia',
                     style: TextStyle(
+                      color: Colors.black54,
                       fontSize: 16,
                     ),
                   ),
@@ -96,7 +100,7 @@ class StartScreen extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () =>
                   Navigator.of(context).pushNamed(AppRoutes.NEW_APPOINTMENTS),
-              child: Text('Nova consulta'),
+              child: const Text('Nova consulta'),
             ),
           ),
           SizedBox(
@@ -104,7 +108,7 @@ class StartScreen extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () =>
                   Navigator.of(context).pushNamed(AppRoutes.APPOINTMENTS),
-              child: Text(
+              child: const Text(
                 'Histórico de consultas',
               ),
             ),
@@ -112,15 +116,16 @@ class StartScreen extends StatelessWidget {
           SizedBox(
             width: 175.0,
             child: ElevatedButton(
-              onPressed: () {},
-              child: Text('Medicamentos'),
+              onPressed: () => Navigator.of(context).pushNamed(AppRoutes.DRUGS),
+              child: const Text('Medicamentos'),
             ),
           ),
           SizedBox(
             width: 175.0,
             child: ElevatedButton(
-              onPressed: () => AppointmentsScreen(),
-              child: Text('Doenças'),
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(AppRoutes.DISEASES),
+              child: const Text('Doenças'),
             ),
           ),
         ],
