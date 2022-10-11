@@ -128,6 +128,14 @@ class StartScreen extends StatelessWidget {
               child: const Text('Doenças'),
             ),
           ),
+          SizedBox(
+            width: 175.0,
+            child: ElevatedButton(
+              onPressed: () =>
+                  Navigator.of(context).pushNamed(AppRoutes.ALLERGIES),
+              child: const Text('Alergias'),
+            ),
+          ),
         ],
       ),
     );

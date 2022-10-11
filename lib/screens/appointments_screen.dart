@@ -12,35 +12,60 @@ class AppointmentsScreen extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
-            padding: const EdgeInsets.all(4),
-            margin: const EdgeInsets.only(top: 16),
+          SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                Text('data'),
-                Text('Pressao'),
+                Text(
+                  'data',
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  'Pressao',
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 16,
+                  ),
+                ),
               ],
             ),
           ),
-          Container(
-            padding: const EdgeInsets.all(4),
-            margin: const EdgeInsets.only(top: 8, bottom: 8),
+          SizedBox(height: 8),
+          Padding(
+            padding: const EdgeInsets.all(4.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text('peso'),
-                Text('altura'),
-                Text('imc'),
+                Text(
+                  'peso',
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  'altura',
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 16,
+                  ),
+                ),
+                Text(
+                  'imc',
+                  style: TextStyle(
+                    color: Colors.black54,
+                    fontSize: 16,
+                  ),
+                ),
               ],
             ),
           ),
           Divider(),
-          ListView(
-            children: [
-              AppointmentWidget(),
-            ],
-          )
         ],
       ),
     );
