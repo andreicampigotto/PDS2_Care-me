@@ -1,70 +1,95 @@
+import 'package:care/models/disease.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DefaultCards extends StatelessWidget {
   const DefaultCards({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 8,
-      margin: EdgeInsets.only(left: 16, right: 16, top: 8),
-      child: Column(
-        children: [
-          SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              textDirection: TextDirection.ltr,
-              children: [
-                Text(
-                  'data',
-                  style: TextStyle(fontSize: 16),
-                ),
-              ],
+    final disease = Provider.of<Disease>(
+      context,
+      listen: false,
+    );
+    return ClipRRect(
+      child: Card(
+        elevation: 8,
+        margin: const EdgeInsets.only(
+          left: 24,
+          right: 24,
+          top: 8,
+        ),
+        child: Column(
+          children: [
+            SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                textDirection: TextDirection.ltr,
+                children: [
+                  Text(
+                    disease.date.toString(),
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Divider(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              textDirection: TextDirection.ltr,
-              children: [
-                Text('Doença'),
-              ],
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                textDirection: TextDirection.ltr,
+                children: [
+                  Text('Doença'),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              textDirection: TextDirection.ltr,
-              children: [
-                Text('Gripe'),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                textDirection: TextDirection.ltr,
+                children: [
+                  Flexible(
+                    child: Text(
+                      disease.name,
+                      style:
+                          const TextStyle(fontSize: 14, color: Colors.black54),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          const Divider(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              textDirection: TextDirection.ltr,
-              children: [
-                Text('Descrição'),
-              ],
+            const Divider(),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                textDirection: TextDirection.ltr,
+                children: [
+                  Text('Descrição'),
+                ],
+              ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              textDirection: TextDirection.ltr,
-              children: [
-                Text('Aqui vai uma descricacao breve do doenca'),
-              ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Flexible(
+                    child: Text(
+                      overflow: TextOverflow.clip,
+                      disease.description,
+                      style:
+                          const TextStyle(fontSize: 14, color: Colors.black54),
+                      maxLines: 5,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 8),
-        ],
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
+            const SizedBox(height: 8),
+          ],
+        ),
       ),
     );
   }

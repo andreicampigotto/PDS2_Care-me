@@ -1,4 +1,3 @@
-import 'package:care/models/appointment.dart';
 import 'package:care/models/disease.dart';
 import 'package:care/models/drug.dart';
 
@@ -19,6 +18,13 @@ final DAMMY_DISEASES = [
   ),
   Disease(
     diseaseId: 'xx003',
+    name: 'Faringite',
+    description:
+        'Gripe iniciada no ultimo dia 5, primeiros sintomas sentido por volta das 17hrs, tomado neusaudina',
+    date: DateTime.now(),
+  ),
+  Disease(
+    diseaseId: 'xx004',
     name: 'Faringite',
     description:
         'Gripe iniciada no ultimo dia 5, primeiros sintomas sentido por volta das 17hrs, tomado neusaudina',

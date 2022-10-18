@@ -1,4 +1,6 @@
-class Disease {
+import 'package:flutter/material.dart';
+
+class Disease with ChangeNotifier {
   final String diseaseId;
   final String name;
   final String description;

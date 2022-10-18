@@ -1,3 +1,4 @@
+import 'package:care/models/disease_list.dart';
 import 'package:care/screens/appointments_screen.dart';
 import 'package:care/screens/diseases_screen.dart';
 import 'package:care/screens/start_screen.dart';
@@ -19,53 +20,61 @@ class _MyAppState extends State<Care> {
   @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData();
-    return MaterialApp(
-      title: 'Care',
-      theme: ThemeData(
-        colorScheme: tema.colorScheme.copyWith(
-          primary: const Color.fromRGBO(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => DiseaseList(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Care',
+        theme: ThemeData(
+          colorScheme: tema.colorScheme.copyWith(
+            primary: const Color.fromRGBO(
+              114,
+              155,
+              114,
+              1,
+            ),
+            secondary: Colors.white,
+            secondaryContainer: const Color.fromRGBO(
+              114,
+              155,
+              114,
+              1,
+            ),
+          ),
+          canvasColor: const Color.fromRGBO(
+            207,
+            232,
+            169,
+            1,
+          ),
+          primaryColor: const Color.fromRGBO(
             114,
             155,
             114,
             1,
           ),
-          secondary: Colors.white,
-          secondaryContainer: const Color.fromRGBO(
-            114,
-            155,
-            114,
-            1,
+          textTheme: tema.textTheme.copyWith(
+            headline6: const TextStyle(
+              fontFamily: 'Roboto',
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
         ),
-        canvasColor: const Color.fromRGBO(
-          207,
-          232,
-          169,
-          1,
-        ),
-        primaryColor: const Color.fromRGBO(
-          114,
-          155,
-          114,
-          1,
-        ),
-        textTheme: tema.textTheme.copyWith(
-          headline6: const TextStyle(
-            fontFamily: 'Roboto',
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
+        routes: {
+          AppRoutes.START: (ctx) => StartScreen(),
+          AppRoutes.APPOINTMENTS: (ctx) => AppointmentsScreen(),
+          AppRoutes.NEW_APPOINTMENTS: (ctx) => NewAppointmentScreen(),
+          AppRoutes.DISEASES: (ctx) => DiseasesScreen(),
+          AppRoutes.ALLERGIES: (ctx) => AllergiesScreen(),
+          AppRoutes.DRUGS: (ctx) => DrugsScreen(),
+        },
+        debugShowCheckedModeBanner: false,
       ),
-      routes: {
-        AppRoutes.START: (ctx) => StartScreen(),
-        AppRoutes.APPOINTMENTS: (ctx) => AppointmentsScreen(),
-        AppRoutes.NEW_APPOINTMENTS: (ctx) => NewAppointmentScreen(),
-        AppRoutes.DISEASES: (ctx) => DiseasesScreen(),
-        AppRoutes.ALLERGIES: (ctx) => AllergiesScreen(),
-        AppRoutes.DRUGS: (ctx) => DrugsScreen(),
-      },
     );
   }
 }

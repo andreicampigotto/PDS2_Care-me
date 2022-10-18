@@ -1,29 +1,18 @@
 import 'package:care/models/disease.dart';
 import 'package:flutter/foundation.dart';
-import 'package:http/http.dart' as http;
+import '../data/dummy_data.dart';
 
 class DiseaseList with ChangeNotifier {
-  final List<Disease> _diseases = [];
+  final List<Disease> _items = DAMMY_DISEASES;
 
-  List<Disease> get diseases {
-    return [..._diseases];
-  }
+  List<Disease> get items => [..._items];
 
   int get diseasesCount {
-    return _diseases.length;
+    return _items.length;
   }
 
   void addDisease(Disease disease) {
-    diseases.insert(
-      0,
-      Disease(
-        diseaseId: 'teste',
-        name: disease.name,
-        description: disease.description,
-        date: DateTime.now(),
-      ),
-    );
-
+    _items.add(disease);
     notifyListeners();
   }
 
