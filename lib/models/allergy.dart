@@ -1,4 +1,6 @@
-class Allergy {
+import 'package:flutter/material.dart';
+
+class Allergy with ChangeNotifier {
   final String allergyId;
   final String name;
   final String description;
