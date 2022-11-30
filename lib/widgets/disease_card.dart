@@ -21,7 +21,7 @@ class DiseaseCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -29,7 +29,7 @@ class DiseaseCard extends StatelessWidget {
                 children: [
                   Text(
                     disease.date.toString(),
-                    style: TextStyle(fontSize: 16),
+                    style: const TextStyle(fontSize: 16),
                   ),
                 ],
               ),

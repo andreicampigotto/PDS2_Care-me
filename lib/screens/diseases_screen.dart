@@ -40,7 +40,7 @@ class DiseasesScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Doenças'),
+        title: const Text('Doenças'),
       ),
       body: RefreshIndicator(
         onRefresh: () => _refreshDisease(context),

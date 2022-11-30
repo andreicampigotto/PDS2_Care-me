@@ -21,7 +21,7 @@ class DefaultCards extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -40,7 +40,7 @@ class DefaultCards extends StatelessWidget {
               child: Row(
                 textDirection: TextDirection.ltr,
                 children: [
-                  Text('Doença'),
+                  const Text('Doença'),
                 ],
               ),
             ),

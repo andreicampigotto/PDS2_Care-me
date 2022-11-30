@@ -7,7 +7,6 @@ class AllergyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final msg = ScaffoldMessenger.of(context);
     return Card(
       elevation: 8,
       margin: const EdgeInsets.only(
@@ -17,7 +16,7 @@ class AllergyWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -25,7 +24,7 @@ class AllergyWidget extends StatelessWidget {
               children: [
                 Text(
                   allergy.date.toString(),
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
               ],
             ),

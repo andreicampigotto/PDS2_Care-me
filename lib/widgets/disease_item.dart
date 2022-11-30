@@ -1,6 +1,5 @@
 import 'package:care/models/disease.dart';
 import 'package:flutter/material.dart';
-import '../models/disease_list.dart';
 
 class DiseaseItem extends StatelessWidget {
   final Disease disease;
@@ -11,7 +10,6 @@ class DiseaseItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final msg = ScaffoldMessenger.of(context);
     return Card(
       elevation: 8,
       margin: const EdgeInsets.only(
@@ -21,7 +19,7 @@ class DiseaseItem extends StatelessWidget {
       ),
       child: Column(
         children: [
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
@@ -29,7 +27,7 @@ class DiseaseItem extends StatelessWidget {
               children: [
                 Text(
                   disease.date.toString(),
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16),
                 ),
               ],
             ),

@@ -48,7 +48,7 @@ class _AllergiesScreenState extends State<AllergiesScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Alergias'),
+        title: const Text('Alergias'),
       ),
       body: ListView.builder(
         itemCount: loadedAllergies.length,

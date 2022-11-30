@@ -20,5 +20,4 @@ class User with ChangeNotifier {
     required this.bloodType,
     required this.height,
   });
-  notifyListeners();
 }

@@ -10,9 +10,11 @@ import 'screens/drugs_screen.dart';
 import 'screens/new_appointment_screen.dart';
 import 'utils/app_routes.dart';
 
-void main() => runApp(Care());
+void main() => runApp(const Care());
 
 class Care extends StatefulWidget {
+  const Care({super.key});
+
   @override
   State<Care> createState() => _MyAppState();
 }

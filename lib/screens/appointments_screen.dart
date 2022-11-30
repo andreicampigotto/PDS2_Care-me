@@ -1,4 +1,3 @@
-import 'package:care/widgets/appointments_widget.dart';
 import 'package:flutter/material.dart';
 
 class AppointmentsScreen extends StatelessWidget {
@@ -8,16 +7,16 @@ class AppointmentsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Consultas'),
+        title: const Text('Consultas'),
       ),
       body: Column(
         children: [
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
+              children: const [
                 Text(
                   'data',
                   style: TextStyle(
@@ -35,12 +34,12 @@ class AppointmentsScreen extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 4),
           Padding(
             padding: const EdgeInsets.all(4.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
+              children: const [
                 Text(
                   'peso',
                   style: TextStyle(
@@ -65,7 +64,7 @@ class AppointmentsScreen extends StatelessWidget {
               ],
             ),
           ),
-          Divider(),
+          const Divider(),
         ],
       ),
     );

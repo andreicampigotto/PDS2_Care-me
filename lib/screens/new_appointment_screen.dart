@@ -1,7 +1,4 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-
 import '../utils/app_routes.dart';
 
 class NewAppointmentScreen extends StatelessWidget {
@@ -11,23 +8,21 @@ class NewAppointmentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Nova consulta'),
+        title: const Text('Nova consulta'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          const SizedBox(
-            height: 32,
-          ),
+          const SizedBox(height: 40),
           Card(
-            margin: EdgeInsets.only(left: 16, right: 16),
+            margin: const EdgeInsets.only(left: 16, right: 16),
             elevation: 8,
             child: Column(
               children: [
                 Container(
-                  margin: EdgeInsets.only(top: 8),
-                  child: Text(
+                  margin: const EdgeInsets.only(top: 24),
+                  child: const Text(
                     'Como foi sua consulta?',
                     style: TextStyle(
                       fontSize: 20,
@@ -35,10 +30,14 @@ class NewAppointmentScreen extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                    top: 16,
+                  ),
                   child: TextFormField(
                     decoration: const InputDecoration(
-                      labelText: 'Medico',
+                      labelText: 'Médico',
                       border: OutlineInputBorder(),
                     ),
                     textInputAction: TextInputAction.next,
@@ -49,7 +48,10 @@ class NewAppointmentScreen extends StatelessWidget {
                   children: [
                     Container(
                       width: 155,
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.only(
+                        top: 8,
+                        left: 16,
+                      ),
                       child: TextFormField(
                         decoration: const InputDecoration(
                           labelText: 'Peso',
@@ -60,7 +62,11 @@ class NewAppointmentScreen extends StatelessWidget {
                     ),
                     Container(
                       width: 155,
-                      padding: EdgeInsets.all(16),
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        right: 16,
+                        top: 16,
+                      ),
                       child: TextFormField(
                         decoration: const InputDecoration(
                           labelText: 'Pressão',
@@ -72,7 +78,11 @@ class NewAppointmentScreen extends StatelessWidget {
                   ],
                 ),
                 Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.only(
+                    left: 16,
+                    right: 16,
+                    top: 16,
+                  ),
                   child: TextFormField(
                     maxLines: 3,
                     decoration: const InputDecoration(
@@ -82,23 +92,26 @@ class NewAppointmentScreen extends StatelessWidget {
                     textInputAction: TextInputAction.next,
                   ),
                 ),
+                const SizedBox(
+                  height: 16,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     TextButton(
                       onPressed: () =>
                           Navigator.of(context).pushNamed(AppRoutes.DRUGS),
-                      child: Text('Medicação'),
+                      child: const Text('Medicação'),
                     ),
                     TextButton(
                       onPressed: () =>
                           Navigator.of(context).pushNamed(AppRoutes.DISEASES),
-                      child: Text('Doença'),
+                      child: const Text('Doença'),
                     ),
                     TextButton(
                       onPressed: () =>
                           Navigator.of(context).pushNamed(AppRoutes.ALLERGIES),
-                      child: Text('Alergia'),
+                      child: const Text('Alergia'),
                     ),
                   ],
                 ),
@@ -110,7 +123,7 @@ class NewAppointmentScreen extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  height: 8,
+                  height: 24,
                 ),
               ],
             ),
