@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:care/models/disease.dart';
 import 'package:flutter/foundation.dart';
 import '../data/dummy_data.dart';

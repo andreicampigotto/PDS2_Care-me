@@ -40,7 +40,7 @@ class AllergyCard extends StatelessWidget {
               child: Row(
                 textDirection: TextDirection.ltr,
                 children: [
-                  Text('Alergia'),
+                  const Text('Alergia'),
                 ],
               ),
             ),
@@ -65,7 +65,7 @@ class AllergyCard extends StatelessWidget {
               child: Row(
                 textDirection: TextDirection.ltr,
                 children: [
-                  Text('Descrição'),
+                  const Text('Descrição'),
                 ],
               ),
             ),
