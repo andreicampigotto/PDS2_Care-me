@@ -1,4 +1,6 @@
-class Drug {
+import 'package:flutter/material.dart';
+
+class Drug with ChangeNotifier {
   final String drugId;
   final String name;
   final String description;

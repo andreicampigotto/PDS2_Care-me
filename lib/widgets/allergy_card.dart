@@ -1,5 +1,4 @@
 import 'package:care/widgets/allergy_item.dart';
-
 import '../models/allergy.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

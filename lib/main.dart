@@ -5,6 +5,7 @@ import 'package:care/screens/start_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'models/allergy_list.dart';
+import 'models/drug_list.dart';
 import 'screens/allergies_screen.dart';
 import 'screens/drugs_screen.dart';
 import 'screens/new_appointment_screen.dart';
@@ -30,6 +31,9 @@ class _MyAppState extends State<Care> {
         ),
         ChangeNotifierProvider(
           create: (_) => AllergyList(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => DrugList(),
         ),
       ],
       child: MaterialApp(

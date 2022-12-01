@@ -2,6 +2,7 @@ import 'package:care/models/drug_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/drug.dart';
+import 'package:intl/intl.dart';
 
 class DrugItem extends StatelessWidget {
   final Drug drug;
@@ -38,7 +39,7 @@ class DrugItem extends StatelessWidget {
             context: context,
             builder: (ctx) => AlertDialog(
                   title: const Text('Tem certeza?'),
-                  content: const Text('Deseja remover a medicaçāo?'),
+                  content: const Text('Deseja remover o medicamento?'),
                   actions: [
                     TextButton(
                       onPressed: () {
@@ -71,10 +72,9 @@ class DrugItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                textDirection: TextDirection.ltr,
                 children: [
                   Text(
-                    drug.date.toString(),
+                    DateFormat('dd/MM/yyyy').format(drug.date),
                     style: const TextStyle(fontSize: 16),
                   ),
                 ],
@@ -84,16 +84,14 @@ class DrugItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                textDirection: TextDirection.ltr,
                 children: const [
-                  Text('Medicação'),
+                  Text('Medicamento'),
                 ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                textDirection: TextDirection.ltr,
                 children: [
                   Flexible(
                     child: Text(
@@ -109,7 +107,6 @@ class DrugItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
-                textDirection: TextDirection.ltr,
                 children: const [
                   Text('Descrição'),
                 ],

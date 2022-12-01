@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
 import '../data/dummy_data.dart';
 import 'drug.dart';
@@ -9,8 +8,8 @@ class DrugList with ChangeNotifier {
 
   List<Drug> get items => [..._items];
 
-  int get diseasesCount {
-    return _items.length;
+  int get itemsCount {
+    return items.length;
   }
 
   get http => null;
