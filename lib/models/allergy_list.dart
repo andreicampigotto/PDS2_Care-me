@@ -8,8 +8,8 @@ class AllergyList with ChangeNotifier {
 
   List<Allergy> get items => [..._items];
 
-  int get diseaseCount {
-    return _items.length;
+  int get itemsCount {
+    return items.length;
   }
 
   get http => null;
@@ -38,7 +38,7 @@ class AllergyList with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> loadDisease() async {
+  Future<void> loadAllergy() async {
     final response = await http.get(
         //Uri.parse('${Constants.PRODUCT_BASE_URL}.json'),
         );
@@ -59,7 +59,7 @@ class AllergyList with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> saveDiseaseFromData(Map<String, Object> data) {
+  Future<void> saveAllergyFromData(Map<String, Object> data) {
     final allergy = Allergy(
       allergyId: data['id'] as String,
       name: data['name'] as String,
@@ -68,9 +68,5 @@ class AllergyList with ChangeNotifier {
     );
 
     return addAllergy(allergy);
-  }
-
-  int get itemsCount {
-    return items.length;
   }
 }

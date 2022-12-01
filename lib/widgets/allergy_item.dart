@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import '../models/allergy.dart';
+import 'package:intl/intl.dart';
 
-class AllergyWidget extends StatelessWidget {
+class AllergyItem extends StatefulWidget {
   final Allergy allergy;
-  const AllergyWidget({required this.allergy, super.key});
+  const AllergyItem({required this.allergy, super.key});
 
+  @override
+  State<AllergyItem> createState() => _AllergyWidgetState();
+}
+
+class _AllergyWidgetState extends State<AllergyItem> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -20,10 +26,9 @@ class AllergyWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              textDirection: TextDirection.ltr,
               children: [
                 Text(
-                  allergy.date.toString(),
+                  DateFormat('dd/MM/yyyy').format(widget.allergy.date),
                   style: const TextStyle(fontSize: 16),
                 ),
               ],
@@ -33,20 +38,18 @@ class AllergyWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              textDirection: TextDirection.ltr,
-              children: [
-                const Text('Alergia'),
+              children: const [
+                Text('Alergia'),
               ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              textDirection: TextDirection.ltr,
               children: [
                 Flexible(
                   child: Text(
-                    allergy.name,
+                    widget.allergy.name,
                     style: const TextStyle(fontSize: 14, color: Colors.black54),
                   ),
                 ),
@@ -57,9 +60,8 @@ class AllergyWidget extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              textDirection: TextDirection.ltr,
-              children: [
-                const Text('Descrição'),
+              children: const [
+                Text('Descrição'),
               ],
             ),
           ),
@@ -72,7 +74,7 @@ class AllergyWidget extends StatelessWidget {
                 Flexible(
                   child: Text(
                     overflow: TextOverflow.clip,
-                    allergy.description,
+                    widget.allergy.description,
                     style: const TextStyle(fontSize: 14, color: Colors.black54),
                     maxLines: 5,
                   ),

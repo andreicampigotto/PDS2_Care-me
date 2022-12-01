@@ -1,21 +1,15 @@
+import 'package:care/widgets/allergy_item.dart';
 import 'package:care/widgets/default_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/allergy.dart';
 import '../models/allergy_list.dart';
-import '../widgets/allergy_card.dart';
 
-class AllergiesScreen extends StatefulWidget {
+class AllergiesScreen extends StatelessWidget {
   const AllergiesScreen({super.key});
 
-  @override
-  State<AllergiesScreen> createState() => _AllergiesScreenState();
-}
-
-class _AllergiesScreenState extends State<AllergiesScreen> {
-  @override
-  void initState() {
-    super.initState();
+  Future<void> _refreshAllergies(BuildContext context) {
+    return Provider.of<AllergyList>(context, listen: false).loadAllergy();
   }
 
   _addTransaction(
@@ -40,21 +34,25 @@ class _AllergiesScreenState extends State<AllergiesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<AllergyList>(
-      context,
-      listen: true,
-    );
-    final List<Allergy> loadedAllergies = provider.items;
+    final AllergyList allergies = Provider.of(context);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Alergias'),
       ),
-      body: ListView.builder(
-        itemCount: loadedAllergies.length,
-        itemBuilder: (context, i) => ChangeNotifierProvider.value(
-          value: loadedAllergies[i],
-          child: const AllergyCard(),
+      body: RefreshIndicator(
+        onRefresh: () => _refreshAllergies(context),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView.builder(
+            itemCount: allergies.itemsCount,
+            itemBuilder: (ctx, i) => Column(
+              children: [
+                AllergyItem(allergy: allergies.items[i]),
+                const Divider(),
+              ],
+            ),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

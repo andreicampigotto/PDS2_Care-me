@@ -9,6 +9,10 @@ import '../widgets/disease_item.dart';
 class DiseasesScreen extends StatelessWidget {
   const DiseasesScreen({super.key});
 
+  Future<void> _refreshDiseases(BuildContext context) {
+    return Provider.of<DiseaseList>(context, listen: false).loadDisease();
+  }
+
   _addTransaction(
       String name, String description, DateTime date, bool continuos) {
     continuos = false;
@@ -31,26 +35,21 @@ class DiseasesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final DiseaseList disease = Provider.of(context);
-
-    final provider = Provider.of<DiseaseList>(
-      context,
-      listen: true,
-    );
+    final DiseaseList diseases = Provider.of(context);
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Doenças'),
       ),
       body: RefreshIndicator(
-        onRefresh: () => _refreshDisease(context),
+        onRefresh: () => _refreshDiseases(context),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: ListView.builder(
-            itemCount: disease.itemsCount,
+            itemCount: diseases.itemsCount,
             itemBuilder: (ctx, i) => Column(
               children: [
-                DiseaseItem(disease: disease.items[i]),
+                DiseaseItem(disease: diseases.items[i]),
                 const Divider(),
               ],
             ),
@@ -72,9 +71,5 @@ class DiseasesScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
-  }
-
-  Future<void> _refreshDisease(BuildContext context) {
-    return Provider.of<DiseaseList>(context, listen: false).loadDisease();
   }
 }
