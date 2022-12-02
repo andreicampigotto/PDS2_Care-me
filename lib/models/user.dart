@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class User with ChangeNotifier {
   final String userId;
-  final String image;
-  final String icon;
+  final String imageUrl;
   final String fullName;
   final DateTime birthday;
   final String emergencyPhone;
@@ -12,8 +11,7 @@ class User with ChangeNotifier {
 
   User({
     required this.userId,
-    required this.image,
-    required this.icon,
+    required this.imageUrl,
     required this.fullName,
     required this.birthday,
     required this.emergencyPhone,

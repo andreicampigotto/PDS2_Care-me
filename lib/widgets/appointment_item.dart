@@ -1,19 +1,16 @@
-import 'package:care/models/disease.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import '../models/appointment.dart';
 
-class DiseaseItem extends StatefulWidget {
-  final Disease disease;
-  const DiseaseItem({
-    required this.disease,
-    super.key,
-  });
+class AppointmentItem extends StatefulWidget {
+  final Appointment? appointment;
+  const AppointmentItem({this.appointment, super.key});
 
   @override
-  State<DiseaseItem> createState() => _DiseaseItemState();
+  State<AppointmentItem> createState() => _AppointmentItemState();
 }
 
-class _DiseaseItemState extends State<DiseaseItem> {
+class _AppointmentItemState extends State<AppointmentItem> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -29,42 +26,40 @@ class _DiseaseItemState extends State<DiseaseItem> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text(
-                  DateFormat('dd/MM/yyyy').format(widget.disease.date),
+                  widget.appointment!.doctor,
+                  style: const TextStyle(fontSize: 16),
+                ),
+                Text(
+                  DateFormat('dd/MM/yyyy').format(widget.appointment!.date),
                   style: const TextStyle(fontSize: 16),
                 ),
               ],
             ),
           ),
           const Divider(),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: const [
-                Text('Doença'),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [
-                Flexible(
-                  child: Text(
-                    widget.disease.name,
-                    style: const TextStyle(fontSize: 14, color: Colors.black54),
-                  ),
-                ),
-              ],
-            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              const SizedBox(height: 8),
+              Text(
+                "Pressão arterial: ${widget.appointment!.bloodPressure}",
+                style: const TextStyle(fontSize: 14, color: Colors.black54),
+              ),
+              Text(
+                "Peso: ${widget.appointment!.weight.toString()}",
+                style: const TextStyle(fontSize: 14, color: Colors.black54),
+              ),
+            ],
           ),
           const Divider(),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
               children: const [
-                Text('Descrição'),
+                Text('Comentarios'),
               ],
             ),
           ),
@@ -77,7 +72,7 @@ class _DiseaseItemState extends State<DiseaseItem> {
                 Flexible(
                   child: Text(
                     overflow: TextOverflow.clip,
-                    widget.disease.description,
+                    widget.appointment!.comments,
                     style: const TextStyle(fontSize: 14, color: Colors.black54),
                     maxLines: 5,
                   ),

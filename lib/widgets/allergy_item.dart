@@ -16,8 +16,8 @@ class _AllergyWidgetState extends State<AllergyItem> {
     return Card(
       elevation: 8,
       margin: const EdgeInsets.only(
-        left: 24,
-        right: 24,
+        left: 16,
+        right: 16,
         top: 8,
       ),
       child: Column(

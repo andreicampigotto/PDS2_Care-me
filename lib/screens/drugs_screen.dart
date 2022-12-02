@@ -3,7 +3,6 @@ import 'package:care/models/drug_list.dart';
 import 'package:care/widgets/drug_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../widgets/default_form.dart';
 
 class DrugsScreen extends StatelessWidget {
   const DrugsScreen({super.key});
@@ -13,7 +12,12 @@ class DrugsScreen extends StatelessWidget {
   }
 
   _addTransaction(
-      String name, String description, DateTime date, bool continuos) {
+    String name,
+    String description,
+    DateTime date,
+    bool continuos,
+    bool active,
+  ) {
     continuos = false;
     final newTransaction = Drug(
       drugId: 'XX01',
@@ -21,16 +25,17 @@ class DrugsScreen extends StatelessWidget {
       description: description,
       date: date,
       continuos: continuos,
+      active: active,
     );
   }
 
   _openTransActionFormModal(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (_) {
-        return DefaultForm(_addTransaction);
-      },
-    );
+    // showModalBottomSheet(
+    //   context: context,
+    //   builder: (_) {
+    //     return Null;
+    //   },
+    // );
   }
 
   @override

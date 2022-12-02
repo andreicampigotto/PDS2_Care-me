@@ -1,71 +1,38 @@
+import 'package:care/models/appointment_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../widgets/appointment_item.dart';
 
 class AppointmentsScreen extends StatelessWidget {
   const AppointmentsScreen({super.key});
 
+  Future<void> _refreshAppointments(BuildContext context) {
+    return Provider.of<AppointmentList>(context, listen: false)
+        .loadAppointment();
+  }
+
   @override
   Widget build(BuildContext context) {
+    final AppointmentList appointments = Provider.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('Consultas'),
       ),
-      body: Column(
-        children: [
-          const SizedBox(height: 8),
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                Text(
-                  'data',
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 16,
-                  ),
-                ),
-                Text(
-                  'Pressao',
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 16,
-                  ),
-                ),
+      body: RefreshIndicator(
+        onRefresh: () => _refreshAppointments(context),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ListView.builder(
+            itemCount: appointments.itemsCount,
+            itemBuilder: (ctx, i) => Column(
+              children: [
+                AppointmentItem(appointment: appointments.items[i]),
+                const Divider(),
               ],
             ),
           ),
-          const SizedBox(height: 4),
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: const [
-                Text(
-                  'peso',
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 16,
-                  ),
-                ),
-                Text(
-                  'altura',
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 16,
-                  ),
-                ),
-                Text(
-                  'imc',
-                  style: TextStyle(
-                    color: Colors.black54,
-                    fontSize: 16,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const Divider(),
-        ],
+        ),
       ),
     );
   }

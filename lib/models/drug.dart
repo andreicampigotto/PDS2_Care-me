@@ -6,6 +6,7 @@ class Drug with ChangeNotifier {
   final String description;
   final bool continuos;
   final DateTime date;
+  final bool active;
 
   Drug({
     required this.drugId,
@@ -13,5 +14,6 @@ class Drug with ChangeNotifier {
     required this.description,
     required this.date,
     required this.continuos,
+    required this.active,
   });
 }

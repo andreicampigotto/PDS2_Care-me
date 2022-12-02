@@ -86,7 +86,7 @@ class NewAppointmentScreen extends StatelessWidget {
                   child: TextFormField(
                     maxLines: 3,
                     decoration: const InputDecoration(
-                      labelText: 'Descrição',
+                      labelText: 'Camentarios',
                       border: OutlineInputBorder(),
                     ),
                     textInputAction: TextInputAction.next,

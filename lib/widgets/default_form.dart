@@ -15,6 +15,7 @@ class _DefaultFormState extends State<DefaultForm> {
   final _description = TextEditingController();
   bool _continuos = false;
   DateTime _actualDate = DateTime.now();
+  bool _active = true;
 
   _submitForm() {
     final name = _name.text;

@@ -22,7 +22,8 @@ class DrugList with ChangeNotifier {
           "name": drug.name,
           "date": drug.date,
           "description": drug.description,
-          "continuos": drug.continuos
+          "continuos": drug.continuos,
+          "active": drug.active
         },
       ),
     );
@@ -35,6 +36,7 @@ class DrugList with ChangeNotifier {
         description: drug.description,
         date: drug.date,
         continuos: drug.continuos,
+        active: drug.active,
       ),
     );
     notifyListeners();
@@ -56,6 +58,7 @@ class DrugList with ChangeNotifier {
           description: drugData['description'],
           date: drugData['date'],
           continuos: drugData['continuos'],
+          active: drugData['active'],
         ),
       );
     });
