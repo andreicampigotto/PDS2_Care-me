@@ -2,7 +2,6 @@ import 'package:care/models/appointment.dart';
 import 'package:care/models/appointment_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'appointment_item.dart';
 
 class AppoitmentCard extends StatelessWidget {
