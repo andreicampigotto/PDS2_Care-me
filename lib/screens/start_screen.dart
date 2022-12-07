@@ -20,7 +20,7 @@ class StartScreen extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(top: 8),
                   child: const Text(
-                    'Ola pessoa',
+                    'Ola José arates',
                     style: TextStyle(
                       fontSize: 24,
                       color: Colors.black87,
@@ -56,14 +56,14 @@ class StartScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: const [
                     Text(
-                      'Tipo sanguineo',
+                      "Tipo sanguineo: A+",
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.black54,
                       ),
                     ),
                     Text(
-                      'idade',
+                      'Idade 37',
                       style: TextStyle(
                         color: Colors.black54,
                         fontSize: 16,
@@ -77,7 +77,7 @@ class StartScreen extends StatelessWidget {
                 Container(
                   margin: const EdgeInsets.only(top: 8),
                   child: const Text(
-                    'Tel.: Emergencia',
+                    'Tel.: Emergencia: 11 95670-0001',
                     style: TextStyle(
                       color: Colors.black54,
                       fontSize: 16,

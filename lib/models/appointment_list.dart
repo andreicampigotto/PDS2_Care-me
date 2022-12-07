@@ -1,12 +1,12 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:http/http.dart' as http;
-import 'package:care/data/dummy_data.dart';
 import 'package:care/models/appointment.dart';
 import 'package:flutter/foundation.dart';
 import '../utils/constants.dart';
 
 class AppointmentList with ChangeNotifier {
-  final List<Appointment> _items = DAMMY_APPOINTMENT;
+  final List<Appointment> _items = [];
 
   List<Appointment> get items {
     return [..._items];
@@ -17,15 +17,16 @@ class AppointmentList with ChangeNotifier {
   }
 
   Future<void> addApointment(Appointment appointment) async {
+    final date = DateTime.now();
     final response = await http.post(
       Uri.parse('${Constants.APPOINTMENT_BASE_URL}.json'),
       body: jsonEncode(
         {
-          "doctor": appointment.doctor,
-          "date": appointment.date,
-          "comments": appointment.comments,
-          "bloodPressure": appointment.bloodPressure,
-          "weight": appointment.weight,
+          'doctor': appointment.doctor,
+          'date': date.toIso8601String(),
+          'comments': appointment.comments,
+          'bloodPressure': appointment.bloodPressure,
+          'weight': appointment.weight,
         },
       ),
     );
@@ -68,10 +69,10 @@ class AppointmentList with ChangeNotifier {
 
   Future<void> saveApointmentFromData(Map<String, Object> data) {
     final apointment = Appointment(
-      appointmentId: data['id'] as String,
+      appointmentId: Random().nextDouble().toString(),
       doctor: data['doctor'] as String,
       comments: data['comments'] as String,
-      date: data['date'] as DateTime,
+      date: DateTime.now(),
       weight: data['weight'] as double,
       bloodPressure: data['bloodPressure'] as String,
     );

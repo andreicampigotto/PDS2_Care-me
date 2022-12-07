@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:flutter/foundation.dart';
 import '../data/dummy_data.dart';
 import '../utils/constants.dart';
@@ -6,7 +7,7 @@ import 'drug.dart';
 import 'package:http/http.dart' as http;
 
 class DrugList with ChangeNotifier {
-  final List<Drug> _items = DAMMY_DRUGS;
+  final List<Drug> _items = [];
 
   List<Drug> get items => [..._items];
 
@@ -15,15 +16,16 @@ class DrugList with ChangeNotifier {
   }
 
   Future<void> addDrug(Drug drug) async {
+    final date = DateTime.now();
     final response = await http.post(
       Uri.parse('${Constants.DRUG_BASE_URL}.json'),
       body: jsonEncode(
         {
-          "name": drug.name,
-          "date": drug.date,
-          "description": drug.description,
-          "isContinuos": drug.isContinuos,
-          "active": drug.active
+          'name': drug.name,
+          'date': date.toIso8601String(),
+          'description': drug.description,
+          'isContinuos': drug.isContinuos,
+          'active': drug.active
         },
       ),
     );
@@ -70,10 +72,10 @@ class DrugList with ChangeNotifier {
 
   Future<void> saveDrugFromData(Map<String, Object> data) {
     final drug = Drug(
-      drugId: data['id'] as String,
+      drugId: Random().nextDouble().toString(),
       name: data['name'] as String,
       description: data['description'] as String,
-      date: data['date'] as DateTime,
+      date: DateTime.now(),
       isContinuos: data['isContinuos'] as bool,
       active: data['active'] as bool,
     );
