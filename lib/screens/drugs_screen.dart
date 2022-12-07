@@ -1,43 +1,44 @@
 import 'package:care/models/drug_list.dart';
+import 'package:care/widgets/drug_card.dart';
 import 'package:care/widgets/drug_form.dart';
-import 'package:care/widgets/drug_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class DrugsScreen extends StatelessWidget {
+class DrugsScreen extends StatefulWidget {
   const DrugsScreen({super.key});
 
-  Future<void> _refreshDrugs(BuildContext context) {
-    return Provider.of<DrugList>(context, listen: false).loadDrug();
-  }
+  @override
+  State<DrugsScreen> createState() => _DrugsScreenState();
+}
+
+class _DrugsScreenState extends State<DrugsScreen> {
+  bool _isLoading = true;
 
   _openTransActionFormModal(BuildContext context) {
     showModalBottomSheet(context: context, builder: (_) => DrugForm());
   }
 
   @override
-  Widget build(BuildContext context) {
-    final DrugList drugs = Provider.of(context);
+  void initState() {
+    super.initState();
+    Provider.of<DrugList>(context, listen: false).loadDrug().then((value) {
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Medicametos'),
       ),
-      body: RefreshIndicator(
-        onRefresh: () => _refreshDrugs(context),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView.builder(
-            itemCount: drugs.itemsCount,
-            itemBuilder: (ctx, i) => Column(
-              children: [
-                DrugItem(drug: drugs.items[i]),
-                const Divider(),
-              ],
-            ),
-          ),
-        ),
-      ),
+      body: _isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : const DrugCard(),
       floatingActionButton: FloatingActionButton(
         elevation: 8,
         child: const Icon(

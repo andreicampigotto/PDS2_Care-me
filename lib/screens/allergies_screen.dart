@@ -1,43 +1,46 @@
-import 'package:care/widgets/allergy_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../models/allergy_list.dart';
+import '../widgets/allergy_card.dart';
 import '../widgets/allergy_form.dart';
 
-class AllergiesScreen extends StatelessWidget {
+class AllergiesScreen extends StatefulWidget {
   const AllergiesScreen({super.key});
 
-  Future<void> _refreshAllergies(BuildContext context) {
-    return Provider.of<AllergyList>(context, listen: false).loadAllergy();
-  }
+  @override
+  State<AllergiesScreen> createState() => _AllergiesScreenState();
+}
+
+class _AllergiesScreenState extends State<AllergiesScreen> {
+  bool _isLoading = true;
 
   _openTransActionFormModal(BuildContext context) {
-    showModalBottomSheet(context: context, builder: (_) => AllergyForm());
+    showModalBottomSheet(context: context, builder: (_) => const AllergyForm());
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<AllergyList>(context, listen: false)
+        .loadAllergy()
+        .then((value) {
+      setState(() {
+        _isLoading = false;
+      });
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final AllergyList allergies = Provider.of(context);
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Alergias'),
       ),
-      body: RefreshIndicator(
-        onRefresh: () => _refreshAllergies(context),
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: ListView.builder(
-            itemCount: allergies.itemsCount,
-            itemBuilder: (ctx, i) => Column(
-              children: [
-                AllergyItem(allergy: allergies.items[i]),
-                const Divider(),
-              ],
-            ),
-          ),
-        ),
-      ),
+      body: _isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : const AllergyCard(),
       floatingActionButton: FloatingActionButton(
         elevation: 8,
         child: const Icon(

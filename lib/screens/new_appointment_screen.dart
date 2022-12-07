@@ -61,13 +61,13 @@ class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
       appBar: AppBar(
         title: const Text('Nova consulta'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 40),
-          SingleChildScrollView(
-            child: Card(
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            const SizedBox(height: 40),
+            Card(
               margin: const EdgeInsets.only(left: 16, right: 16),
               elevation: 8,
               child: Form(
@@ -82,35 +82,38 @@ class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                        left: 16,
-                        right: 16,
-                        top: 16,
-                      ),
-                      child: TextFormField(
-                        initialValue: _formData['doctor']?.toString(),
-                        decoration: const InputDecoration(
-                          labelText: 'Médico',
-                          border: OutlineInputBorder(),
+                    Form(
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 16,
+                          right: 16,
+                          top: 16,
                         ),
-                        textInputAction: TextInputAction.next,
-                        onFieldSubmitted: (_) {
-                          FocusScope.of(context).requestFocus(_weightFocus);
-                        },
-                        onSaved: (doctor) => _formData['doctor'] = doctor ?? '',
-                        validator: (_doctor) {
-                          final doctor = _doctor ?? '';
-                          if (doctor.trim().isEmpty) {
-                            return 'Médico obrigatório';
-                          }
+                        child: TextFormField(
+                          initialValue: _formData['doctor']?.toString(),
+                          decoration: const InputDecoration(
+                            labelText: 'Médico',
+                            border: OutlineInputBorder(),
+                          ),
+                          textInputAction: TextInputAction.next,
+                          onFieldSubmitted: (_) {
+                            FocusScope.of(context).requestFocus(_weightFocus);
+                          },
+                          onSaved: (doctor) =>
+                              _formData['doctor'] = doctor ?? '',
+                          validator: (_doctor) {
+                            final doctor = _doctor ?? '';
+                            if (doctor.trim().isEmpty) {
+                              return 'Médico obrigatório';
+                            }
 
-                          if (doctor.trim().length < 4) {
-                            return 'Médico precisa ter no minimo 4 letras';
-                          }
+                            if (doctor.trim().length < 4) {
+                              return 'Médico precisa ter no minimo 4 letras';
+                            }
 
-                          return null;
-                        },
+                            return null;
+                          },
+                        ),
                       ),
                     ),
                     Row(
@@ -182,11 +185,9 @@ class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
                               if (bloodPressure.trim().isEmpty) {
                                 return 'Pressāo arterial obrigatório';
                               }
-
                               if (bloodPressure.trim().length < 3) {
                                 return 'Pressāo arterial precisa ter no minimo 3 caracteres';
                               }
-
                               return null;
                             },
                           ),
@@ -260,8 +261,8 @@ class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -10,25 +10,15 @@ class DrugForm extends StatefulWidget {
 }
 
 class _DrugFormState extends State<DrugForm> {
-  final _name = TextEditingController();
-  final _description = TextEditingController();
-  bool _isContinuos = false;
-  DateTime _actualDate = DateTime.now();
-  bool _active = true;
-
   final _descriptionFocus = FocusNode();
 
   final _formKey = GlobalKey<FormState>();
-  final _formData = <String, Object>{};
+  final _formData = <dynamic, Object>{};
 
   Future<void> _submitForm() async {
-    final name = _name.text;
-    final description = _description.text;
-    final isContinuos = _isContinuos;
+    final isValid = _formKey.currentState?.validate() ?? false;
 
-    if (name.isEmpty || description.isEmpty) {
-      return;
-    }
+    if (!isValid) return;
 
     _formKey.currentState?.save();
 
@@ -42,7 +32,7 @@ class _DrugFormState extends State<DrugForm> {
         context: context,
         builder: (ctx) => AlertDialog(
           title: const Text('Ops, Error!'),
-          content: const Text('Ocorreu um error ao salvar alergia!'),
+          content: const Text('Ocorreu error ao salvar medicação!'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
@@ -62,7 +52,7 @@ class _DrugFormState extends State<DrugForm> {
 
   @override
   Widget build(BuildContext context) {
-    bool isContinuos = false;
+    bool contiuos = false;
     final mediaQuery = MediaQuery.of(context);
     return SingleChildScrollView(
       child: Column(
@@ -101,74 +91,87 @@ class _DrugFormState extends State<DrugForm> {
                 right: 8.0,
                 bottom: 8.0 + mediaQuery.viewInsets.bottom,
               ),
-              child: Column(
-                children: [
-                  TextFormField(
-                    decoration: const InputDecoration(
-                      labelText: 'Nome',
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      initialValue: _formData['name']?.toString(),
+                      decoration: const InputDecoration(
+                        labelText: 'Nome',
+                      ),
+                      textInputAction: TextInputAction.next,
+                      onFieldSubmitted: (_) {
+                        FocusScope.of(context).requestFocus(_descriptionFocus);
+                      },
+                      onSaved: (name) => _formData['name'] = name ?? '',
+                      validator: (_name) {
+                        final name = _name ?? '';
+                        if (name.trim().isEmpty) {
+                          return 'Nome obrigatório';
+                        }
+
+                        if (name.trim().length < 2) {
+                          return 'Nome precisa ter no minimo 2 letras';
+                        }
+
+                        return null;
+                      },
                     ),
-                    validator: (_name) {
-                      final name = _name ?? '';
-                      if (name.trim().isEmpty) {
-                        return 'Nome obrigatório';
-                      }
+                    TextFormField(
+                      initialValue: _formData['description']?.toString(),
+                      decoration: const InputDecoration(labelText: 'Descrição'),
+                      focusNode: _descriptionFocus,
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 3,
+                      textInputAction: TextInputAction.next,
+                      onSaved: (description) =>
+                          _formData['description'] = description ?? '',
+                      validator: (_description) {
+                        final description = _description ?? '';
+                        if (description.trim().isEmpty) {
+                          return 'Descriçāo obrigatória';
+                        }
 
-                      if (name.trim().length < 2) {
-                        return 'Nome precisa ter no minimo 2 letras';
-                      }
-
-                      return null;
-                    },
-                    textInputAction: TextInputAction.next,
-                    onFieldSubmitted: (_) {
-                      FocusScope.of(context).requestFocus(_descriptionFocus);
-                    },
-                    onSaved: (name) => _formData['name'] = name ?? '',
-                  ),
-                  TextFormField(
-                    decoration: const InputDecoration(labelText: 'Descrição'),
-                    focusNode: _descriptionFocus,
-                    textInputAction: TextInputAction.next,
-                    keyboardType: TextInputType.multiline,
-                    maxLines: 3,
-                    onSaved: (description) =>
-                        _formData['description'] = description ?? '',
-                    validator: (_description) {
-                      final description = _description ?? '';
-                      if (description.trim().isEmpty) {
-                        return 'Descriçāo obrigatória';
-                      }
-
-                      if (description.trim().length < 10) {
-                        return 'Nome precisa ter no minimo 10 caracteres';
-                      }
-                      return null;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Switch(
-                        value: isContinuos,
-                        onChanged: (_isContinuos) {
-                          setState(() {
-                            isContinuos = _isContinuos;
-                          });
-                        },
-                      ),
-                      SizedBox(
-                        width: 175.0,
-                        child: ElevatedButton(
-                          child: Text('Salvar'),
-                          onPressed: _submitForm,
+                        if (description.trim().length < 10) {
+                          return 'Descriçāo precisa ter no minimo 10 caracteres';
+                        }
+                        return null;
+                      },
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        // Switch(
+                        //   value: contiuos,
+                        //   onChanged: (_) {},
+                        //   hoverColor: const Color.fromRGBO(
+                        //     114,
+                        //     155,
+                        //     114,
+                        //     1,
+                        //   ),
+                        //   activeColor: const Color.fromRGBO(
+                        //     114,
+                        //     155,
+                        //     114,
+                        //     1,
+                        //   ),
+                        // ),
+                        SizedBox(
+                          width: 175.0,
+                          child: ElevatedButton(
+                            child: Text('Salvar'),
+                            onPressed: _submitForm,
+                          ),
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ),

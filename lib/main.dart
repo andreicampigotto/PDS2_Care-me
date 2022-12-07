@@ -1,5 +1,6 @@
 import 'package:care/models/appointment_list.dart';
 import 'package:care/models/disease_list.dart';
+import 'package:care/models/drug.dart';
 import 'package:care/models/user_list.dart';
 import 'package:care/screens/appointments_screen.dart';
 import 'package:care/screens/diseases_screen.dart';
@@ -84,12 +85,12 @@ class _MyAppState extends State<Care> {
           ),
         ),
         routes: {
-          AppRoutes.START: (ctx) => StartScreen(),
-          AppRoutes.APPOINTMENTS: (ctx) => AppointmentsScreen(),
-          AppRoutes.NEW_APPOINTMENTS: (ctx) => NewAppointmentScreen(),
-          AppRoutes.DISEASES: (ctx) => DiseasesScreen(),
-          AppRoutes.ALLERGIES: (ctx) => AllergiesScreen(),
-          AppRoutes.DRUGS: (ctx) => DrugsScreen(),
+          AppRoutes.START: (ctx) => const StartScreen(),
+          AppRoutes.APPOINTMENTS: (ctx) => const AppointmentsScreen(),
+          AppRoutes.NEW_APPOINTMENTS: (ctx) => const NewAppointmentScreen(),
+          AppRoutes.DISEASES: (ctx) => const DiseasesScreen(),
+          AppRoutes.ALLERGIES: (ctx) => const AllergiesScreen(),
+          AppRoutes.DRUGS: (ctx) => const DrugsScreen(),
         },
         debugShowCheckedModeBanner: false,
       ),

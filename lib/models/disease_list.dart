@@ -53,7 +53,7 @@ class DiseaseList with ChangeNotifier {
           diseaseId: diseaseId,
           name: diseaseData['name'],
           description: diseaseData['description'],
-          date: diseaseData['date'],
+          date: DateTime.parse(diseaseData['date']),
         ),
       );
     });

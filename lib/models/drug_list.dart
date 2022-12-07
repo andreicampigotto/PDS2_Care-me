@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/foundation.dart';
-import '../data/dummy_data.dart';
 import '../utils/constants.dart';
 import 'drug.dart';
 import 'package:http/http.dart' as http;
@@ -57,7 +56,7 @@ class DrugList with ChangeNotifier {
           drugId: drugId,
           name: drugData['name'],
           description: drugData['description'],
-          date: drugData['date'],
+          date: DateTime.parse(drugData['date']),
           isContinuos: drugData['isContinuos'],
           active: drugData['active'],
         ),
@@ -70,14 +69,14 @@ class DrugList with ChangeNotifier {
     drug.active = false;
   }
 
-  Future<void> saveDrugFromData(Map<String, Object> data) {
+  Future<void> saveDrugFromData(Map<dynamic, Object> data) {
     final drug = Drug(
       drugId: Random().nextDouble().toString(),
       name: data['name'] as String,
       description: data['description'] as String,
       date: DateTime.now(),
-      isContinuos: data['isContinuos'] as bool,
-      active: data['active'] as bool,
+      isContinuos: false,
+      active: true,
     );
 
     return addDrug(drug);

@@ -1,4 +1,6 @@
+import 'package:care/models/allergy_list.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/allergy.dart';
 import 'package:intl/intl.dart';
 

@@ -46,6 +46,7 @@ class AllergyList with ChangeNotifier {
 
     if (response.body == 'null') return;
     _items.clear();
+
     Map<String, dynamic> data = jsonDecode(response.body);
     data.forEach((allergyId, allergyData) {
       _items.add(
@@ -53,7 +54,7 @@ class AllergyList with ChangeNotifier {
           allergyId: allergyId,
           name: allergyData['name'],
           description: allergyData['description'],
-          date: allergyData['date'],
+          date: DateTime.parse(allergyData['date']),
         ),
       );
     });
