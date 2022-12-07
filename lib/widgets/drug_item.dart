@@ -57,7 +57,7 @@ class DrugItem extends StatelessWidget {
                 ));
       },
       onDismissed: (_) {
-        Provider.of<DrugList>(context, listen: false).removeItem(drug.drugId);
+        Provider.of<DrugList>(context, listen: false).deleteDrug(drug);
       },
       child: Card(
         elevation: 8,

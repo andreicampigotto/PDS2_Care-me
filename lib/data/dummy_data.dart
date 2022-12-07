@@ -42,7 +42,7 @@ final DAMMY_DRUGS = [
     description:
         'Gripe iniciada no ultimo dia 5, primeiros sintomas sentido por volta das 17hrs, tomado neusaudina',
     date: DateTime.now(),
-    continuos: true,
+    isContinuos: true,
     active: false,
   ),
   Drug(
@@ -51,7 +51,7 @@ final DAMMY_DRUGS = [
     description:
         'Gripe iniciada no ultimo dia 5, primeiros sintomas sentido por volta das 17hrs, tomado neusaudina',
     date: DateTime.now(),
-    continuos: true,
+    isContinuos: true,
     active: true,
   ),
   Drug(
@@ -60,7 +60,7 @@ final DAMMY_DRUGS = [
     description:
         'Gripe iniciada no ultimo dia 5, primeiros sintomas sentido por volta das 17hrs, tomado neusaudina',
     date: DateTime.now(),
-    continuos: false,
+    isContinuos: false,
     active: true,
   ),
 ];

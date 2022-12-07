@@ -1,8 +1,6 @@
 import 'package:care/models/user.dart';
-import 'package:care/screens/appointments_screen.dart';
 import 'package:care/utils/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class StartScreen extends StatelessWidget {
   const StartScreen({super.key});
@@ -32,7 +30,7 @@ class StartScreen extends StatelessWidget {
                 const SizedBox(
                   height: 8,
                 ),
-                CircleAvatar(
+                const CircleAvatar(
                   backgroundColor: Color.fromRGBO(
                     114,
                     155,
@@ -56,7 +54,7 @@ class StartScreen extends StatelessWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
+                  children: const [
                     Text(
                       'Tipo sanguineo',
                       style: TextStyle(
@@ -78,7 +76,7 @@ class StartScreen extends StatelessWidget {
                 ),
                 Container(
                   margin: const EdgeInsets.only(top: 8),
-                  child: Text(
+                  child: const Text(
                     'Tel.: Emergencia',
                     style: TextStyle(
                       color: Colors.black54,

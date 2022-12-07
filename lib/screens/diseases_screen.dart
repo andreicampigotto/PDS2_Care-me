@@ -1,9 +1,7 @@
-import 'package:care/models/disease.dart';
 import 'package:care/models/disease_list.dart';
-import 'package:care/widgets/default_form.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '../widgets/disease_form.dart';
 import '../widgets/disease_item.dart';
 
 class DiseasesScreen extends StatelessWidget {
@@ -13,24 +11,8 @@ class DiseasesScreen extends StatelessWidget {
     return Provider.of<DiseaseList>(context, listen: false).loadDisease();
   }
 
-  _addTransaction(
-      String name, String description, DateTime date, bool continuos) {
-    continuos = false;
-    final newTransaction = Disease(
-      diseaseId: 'XX01',
-      name: name,
-      description: description,
-      date: date,
-    );
-  }
-
   _openTransActionFormModal(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (_) {
-        return DefaultForm(_addTransaction);
-      },
-    );
+    showModalBottomSheet(context: context, builder: (_) => DiseaseForm());
   }
 
   @override
@@ -67,7 +49,7 @@ class DiseasesScreen extends StatelessWidget {
             1,
           ),
         ),
-        onPressed: () => (_openTransActionFormModal(context)),
+        onPressed: () => _openTransActionFormModal(context),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

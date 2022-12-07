@@ -1,8 +1,9 @@
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:care/data/dummy_data.dart';
 import 'package:care/models/appointment.dart';
 import 'package:flutter/foundation.dart';
+import '../utils/constants.dart';
 
 class AppointmentList with ChangeNotifier {
   final List<Appointment> _items = DAMMY_APPOINTMENT;
@@ -15,11 +16,9 @@ class AppointmentList with ChangeNotifier {
     return items.length;
   }
 
-  get http => null;
-
   Future<void> addApointment(Appointment appointment) async {
     final response = await http.post(
-      //Uri.parse('${Constants.PRODUCT_BASE_URL}.json'),
+      Uri.parse('${Constants.APPOINTMENT_BASE_URL}.json'),
       body: jsonEncode(
         {
           "doctor": appointment.doctor,
@@ -46,8 +45,8 @@ class AppointmentList with ChangeNotifier {
 
   Future<void> loadAppointment() async {
     final response = await http.get(
-        //Uri.parse('${Constants.PRODUCT_BASE_URL}.json'),
-        );
+      Uri.parse('${Constants.APPOINTMENT_BASE_URL}.json'),
+    );
 
     if (response.body == 'null') return;
     _items.clear();

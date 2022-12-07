@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:care/models/allergy.dart';
 import 'package:flutter/foundation.dart';
-import '../data/dummy_data.dart';
+import '../utils/constants.dart';
+import 'package:http/http.dart' as http;
 
 class AllergyList with ChangeNotifier {
-  final List<Allergy> _items = DAMMY_ALLERGIES;
+  final List<Allergy> _items = [];
 
   List<Allergy> get items => [..._items];
 
@@ -12,16 +14,15 @@ class AllergyList with ChangeNotifier {
     return items.length;
   }
 
-  get http => null;
-
   Future<void> addAllergy(Allergy allergy) async {
+    final date = DateTime.now();
     final response = await http.post(
-      //Uri.parse('${Constants.PRODUCT_BASE_URL}.json'),
+      Uri.parse('${Constants.ALLERGY_BASE_URL}.json'),
       body: jsonEncode(
         {
-          "name": allergy.name,
-          "date": allergy.date,
-          "description": allergy.description,
+          'name': allergy.name,
+          'date': date.toIso8601String(),
+          'description': allergy.description,
         },
       ),
     );
@@ -40,8 +41,8 @@ class AllergyList with ChangeNotifier {
 
   Future<void> loadAllergy() async {
     final response = await http.get(
-        //Uri.parse('${Constants.PRODUCT_BASE_URL}.json'),
-        );
+      Uri.parse('${Constants.ALLERGY_BASE_URL}.json'),
+    );
 
     if (response.body == 'null') return;
     _items.clear();
@@ -61,10 +62,10 @@ class AllergyList with ChangeNotifier {
 
   Future<void> saveAllergyFromData(Map<String, Object> data) {
     final allergy = Allergy(
-      allergyId: data['id'] as String,
+      allergyId: Random().nextDouble().toString(),
       name: data['name'] as String,
       description: data['description'] as String,
-      date: data['date'] as DateTime,
+      date: DateTime.now(),
     );
 
     return addAllergy(allergy);

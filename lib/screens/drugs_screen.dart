@@ -1,5 +1,5 @@
-import 'package:care/models/drug.dart';
 import 'package:care/models/drug_list.dart';
+import 'package:care/widgets/drug_form.dart';
 import 'package:care/widgets/drug_item.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -11,31 +11,8 @@ class DrugsScreen extends StatelessWidget {
     return Provider.of<DrugList>(context, listen: false).loadDrug();
   }
 
-  _addTransaction(
-    String name,
-    String description,
-    DateTime date,
-    bool continuos,
-    bool active,
-  ) {
-    continuos = false;
-    final newTransaction = Drug(
-      drugId: 'XX01',
-      name: name,
-      description: description,
-      date: date,
-      continuos: continuos,
-      active: active,
-    );
-  }
-
   _openTransActionFormModal(BuildContext context) {
-    // showModalBottomSheet(
-    //   context: context,
-    //   builder: (_) {
-    //     return Null;
-    //   },
-    // );
+    showModalBottomSheet(context: context, builder: (_) => DrugForm());
   }
 
   @override
@@ -72,7 +49,7 @@ class DrugsScreen extends StatelessWidget {
             1,
           ),
         ),
-        onPressed: () => (_openTransActionFormModal(context)),
+        onPressed: () => _openTransActionFormModal(context),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );

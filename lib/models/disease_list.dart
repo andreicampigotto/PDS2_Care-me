@@ -1,10 +1,12 @@
 import 'dart:convert';
+import 'dart:math';
 import 'package:care/models/disease.dart';
 import 'package:flutter/foundation.dart';
-import '../data/dummy_data.dart';
+import 'package:http/http.dart' as http;
+import '../utils/constants.dart';
 
 class DiseaseList with ChangeNotifier {
-  final List<Disease> _items = DAMMY_DISEASES;
+  final List<Disease> _items = [];
 
   List<Disease> get items => [..._items];
 
@@ -12,16 +14,15 @@ class DiseaseList with ChangeNotifier {
     return _items.length;
   }
 
-  get http => null;
-
   Future<void> addDisease(Disease disease) async {
+    final date = DateTime.now();
     final response = await http.post(
-      //Uri.parse('${Constants.PRODUCT_BASE_URL}.json'),
+      Uri.parse('${Constants.DISEASE_BASE_URL}.json'),
       body: jsonEncode(
         {
-          "name": disease.name,
-          "date": disease.date,
-          "description": disease.description,
+          'name': disease.name,
+          'date': date.toIso8601String(),
+          'description': disease.description,
         },
       ),
     );
@@ -40,8 +41,8 @@ class DiseaseList with ChangeNotifier {
 
   Future<void> loadDisease() async {
     final response = await http.get(
-        //Uri.parse('${Constants.PRODUCT_BASE_URL}.json'),
-        );
+      Uri.parse('${Constants.DISEASE_BASE_URL}.json'),
+    );
 
     if (response.body == 'null') return;
     _items.clear();
@@ -61,10 +62,10 @@ class DiseaseList with ChangeNotifier {
 
   Future<void> saveDiseaseFromData(Map<String, Object> data) {
     final disease = Disease(
-      diseaseId: data['id'] as String,
+      diseaseId: Random().nextDouble().toString(),
       name: data['name'] as String,
       description: data['description'] as String,
-      date: data['date'] as DateTime,
+      date: DateTime.now(),
     );
 
     return addDisease(disease);

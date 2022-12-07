@@ -1,7 +1,9 @@
 import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import '../data/dummy_data.dart';
+import '../utils/constants.dart';
 import 'drug.dart';
+import 'package:http/http.dart' as http;
 
 class DrugList with ChangeNotifier {
   final List<Drug> _items = DAMMY_DRUGS;
@@ -12,17 +14,15 @@ class DrugList with ChangeNotifier {
     return items.length;
   }
 
-  get http => null;
-
   Future<void> addDrug(Drug drug) async {
     final response = await http.post(
-      //Uri.parse('${Constants.PRODUCT_BASE_URL}.json'),
+      Uri.parse('${Constants.DRUG_BASE_URL}.json'),
       body: jsonEncode(
         {
           "name": drug.name,
           "date": drug.date,
           "description": drug.description,
-          "continuos": drug.continuos,
+          "isContinuos": drug.isContinuos,
           "active": drug.active
         },
       ),
@@ -31,21 +31,20 @@ class DrugList with ChangeNotifier {
     final id = jsonDecode(response.body)['name'];
     _items.add(
       Drug(
-        drugId: id,
-        name: drug.name,
-        description: drug.description,
-        date: drug.date,
-        continuos: drug.continuos,
-        active: drug.active,
-      ),
+          drugId: id,
+          name: drug.name,
+          description: drug.description,
+          date: drug.date,
+          isContinuos: drug.isContinuos,
+          active: drug.active),
     );
     notifyListeners();
   }
 
   Future<void> loadDrug() async {
     final response = await http.get(
-        //Uri.parse('${Constants.PRODUCT_BASE_URL}.json'),
-        );
+      Uri.parse('${Constants.DRUG_BASE_URL}.json'),
+    );
 
     if (response.body == 'null') return;
     _items.clear();
@@ -57,7 +56,7 @@ class DrugList with ChangeNotifier {
           name: drugData['name'],
           description: drugData['description'],
           date: drugData['date'],
-          continuos: drugData['continuos'],
+          isContinuos: drugData['isContinuos'],
           active: drugData['active'],
         ),
       );
@@ -65,8 +64,20 @@ class DrugList with ChangeNotifier {
     notifyListeners();
   }
 
-  void removeItem(String drugId) {
-    _items.remove(drugId);
-    notifyListeners();
+  Future<void> deleteDrug(Drug drug) async {
+    drug.active = false;
+  }
+
+  Future<void> saveDrugFromData(Map<String, Object> data) {
+    final drug = Drug(
+      drugId: data['id'] as String,
+      name: data['name'] as String,
+      description: data['description'] as String,
+      date: data['date'] as DateTime,
+      isContinuos: data['isContinuos'] as bool,
+      active: data['active'] as bool,
+    );
+
+    return addDrug(drug);
   }
 }
