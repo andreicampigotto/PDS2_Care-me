@@ -35,7 +35,7 @@ class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
         context: context,
         builder: (ctx) => AlertDialog(
           title: const Text('Ops, Error!'),
-          content: const Text('Ocorreu um error ao salvar consulta!'),
+          content: const Text('Ocorreu error ao salvar sua consulta!'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
@@ -71,6 +71,7 @@ class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
               margin: const EdgeInsets.only(left: 16, right: 16),
               elevation: 8,
               child: Form(
+                key: _formKey,
                 child: Column(
                   children: [
                     Container(
@@ -82,38 +83,35 @@ class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
                         ),
                       ),
                     ),
-                    Form(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          left: 16,
-                          right: 16,
-                          top: 16,
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        left: 16,
+                        right: 16,
+                        top: 16,
+                      ),
+                      child: TextFormField(
+                        initialValue: _formData['doctor']?.toString(),
+                        decoration: const InputDecoration(
+                          labelText: 'Médico',
+                          border: OutlineInputBorder(),
                         ),
-                        child: TextFormField(
-                          initialValue: _formData['doctor']?.toString(),
-                          decoration: const InputDecoration(
-                            labelText: 'Médico',
-                            border: OutlineInputBorder(),
-                          ),
-                          textInputAction: TextInputAction.next,
-                          onFieldSubmitted: (_) {
-                            FocusScope.of(context).requestFocus(_weightFocus);
-                          },
-                          onSaved: (doctor) =>
-                              _formData['doctor'] = doctor ?? '',
-                          validator: (_doctor) {
-                            final doctor = _doctor ?? '';
-                            if (doctor.trim().isEmpty) {
-                              return 'Médico obrigatório';
-                            }
+                        textInputAction: TextInputAction.next,
+                        onFieldSubmitted: (_) {
+                          FocusScope.of(context).requestFocus(_weightFocus);
+                        },
+                        onSaved: (doctor) => _formData['doctor'] = doctor ?? '',
+                        validator: (_doctor) {
+                          final doctor = _doctor ?? '';
+                          if (doctor.trim().isEmpty) {
+                            return 'Médico obrigatório';
+                          }
 
-                            if (doctor.trim().length < 4) {
-                              return 'Médico precisa ter no minimo 4 letras';
-                            }
+                          if (doctor.trim().length < 4) {
+                            return 'Médico precisa ter no minimo 4 letras';
+                          }
 
-                            return null;
-                          },
-                        ),
+                          return null;
+                        },
                       ),
                     ),
                     Row(
@@ -126,7 +124,7 @@ class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
                             left: 16,
                           ),
                           child: TextFormField(
-                            initialValue: _formData['price']?.toString(),
+                            initialValue: _formData['weight']?.toString(),
                             decoration: const InputDecoration(
                               labelText: 'Peso',
                               border: OutlineInputBorder(),
@@ -140,7 +138,7 @@ class _NewAppointmentScreenState extends State<NewAppointmentScreen> {
                               FocusScope.of(context)
                                   .requestFocus(_bloodPressureFocus);
                             },
-                            onSaved: (weight) => _formData['price'] =
+                            onSaved: (weight) => _formData['weight'] =
                                 double.parse(weight ?? '0'),
                             validator: (_weight) {
                               final weightString = _weight ?? '';

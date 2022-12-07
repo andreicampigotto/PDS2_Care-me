@@ -58,7 +58,7 @@ class AppointmentList with ChangeNotifier {
           appointmentId: apointmentId,
           doctor: apointmentData['doctor'],
           comments: apointmentData['comments'],
-          date: apointmentData['date'],
+          date: DateTime.parse(apointmentData['date']),
           weight: apointmentData['weight'],
           bloodPressure: apointmentData['bloodPressure'],
         ),
