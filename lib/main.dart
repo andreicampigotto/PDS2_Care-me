@@ -1,5 +1,6 @@
 import 'package:care/models/appointment_list.dart';
 import 'package:care/models/disease_list.dart';
+import 'package:care/models/user_list.dart';
 import 'package:care/screens/appointments_screen.dart';
 import 'package:care/screens/diseases_screen.dart';
 import 'package:care/screens/start_screen.dart';
@@ -38,6 +39,9 @@ class _MyAppState extends State<Care> {
         ),
         ChangeNotifierProvider(
           create: (_) => AppointmentList(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => UserList(),
         ),
       ],
       child: MaterialApp(
